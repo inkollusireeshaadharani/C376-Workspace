@@ -1,0 +1,27 @@
+<h1>Employees: {{ employees }}</h1>
+
+<h2 [ngClass]="{ redclass: myPwd == 'dharani' }">Enter Password</h2>
+<input type="password" [(ngModel)]="myPwd" />
+
+<ul *ngIf="myPwd == 'dharani'">
+  <li *ngFor="let emp of employees">
+    {{ emp }}
+  </li>
+</ul>
+
+<h3 [ngStyle]="{ color: myPwd == 'dharani' ? 'green' : 'red' }">
+  Individual List
+</h3>
+<div mydirective>
+  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quia praesentium
+  reprehenderit doloribus libero laudantium error fugiat ipsum dicta inventore
+  ullam tempore similique voluptas dolores ex, assumenda velit? Harum, minus
+  aliquid.
+</div>
+
+<div mydirective>
+  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quia praesentium
+  reprehenderit doloribus libero laudantium error fugiat ipsum dicta inventore
+  ullam tempore similique voluptas dolores ex, assumenda velit? Harum, minus
+  aliquid.
+</div>

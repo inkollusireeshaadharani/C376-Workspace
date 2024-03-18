@@ -1,0 +1,25 @@
+<h1>Data binding demo</h1>
+<!-- Property Binding -->
+
+<!-- It is one way data binding to set the data from component to view. 3 ways are given below -->
+<!-- Property binding allows you to define element attribute values from the component class  -->
+<img src="{{ imagePath }}" />
+<!-- 1.  Interpolation as long as value is a String -->
+<img [src]="imagePath" /><!-- 2. Wrapping brackets around Element property -->
+<img bind-src="imagePath" /><!-- 3. Adding bind- before Element property -->
+
+<button [disabled]="buttonStatus">My button</button>
+<!-- data flowing from component (.ts) to view (.html) -->
+<br />
+<!-- Event Binding -->
+<button (click)="myevent($event)">Click me to generate event</button>
+<!-- data flowing from view to the component -->
+
+<!-- Two way binding -->
+<!--[  ]  - property binding
+    ( )  - event binding
+    [( )] - two way binding -->
+<br />
+<input type="text" [(ngModel)]="customerName" /><br />
+You have written: {{ customerName }}
+<!--  [()] is used for 2 way binding. Need to import FormsModule in app.module.ts  -->

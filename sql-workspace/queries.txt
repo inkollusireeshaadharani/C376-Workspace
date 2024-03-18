@@ -1,0 +1,663 @@
+
+1.	create database empmgmt;
+2.	create database IF NOT EXISTS empmgmt;
+
+3.	use empmgmt;
+
+4.	create table dept(
+  deptid     float(2,0),
+ dname      varchar(14),
+ loc        varchar(13),
+ constraint pk_dept primary key (deptid)
+);
+
+5.	describe dept;
+
+6.	drop table dept;
+
+7.	create table dept(
+  deptid     int,
+  dname      varchar(14),
+ loc        varchar(13),
+  constraint pk_dept primary key (deptid)
+);
+
+8.	ALTER TABLE dept CHANGE deptid deptno int;
+
+9.	insert into dept values(20, 'RESEARCH', 'DALLAS');
+select * from dept;
+
+
+10.	ALTER TABLE dept RENAME to department;
+
+11.	describe department;
+
+12.	select * from department;
+
+13.	ALTER TABLE department CHANGE deptno deptid int;
+select * from department;
+
+14.	ALTER TABLE department CHANGE deptid deptname char;
+select * from department;
+
+15.	ALTER TABLE department DROP COLUMN dname;
+select * from department;
+
+16.	TRUNCATE TABLE department;
+select * from department;
+
+17.	DROP TABLE department;
+18.	describe department;
+
+19.	create table dept(
+deptid     int,
+dname      varchar(14) not null,
+loc        varchar(13)
+);
+
+20.	alter table dept ADD CONSTRAINT pk_dept primary key (deptid);
+
+21.	CREATE TABLE Emp(
+EmpId Integer, 
+EmpName Varchar(20) NOT NULL,
+Email Varchar(15) UNIQUE, 
+salary Integer, 
+DeptCode Integer(3),
+PRIMARY KEY (`EmpId`),
+CHECK (salary > 10000));
+
+describe Emp;
+select * from Emp;
+
+22.	ALTER TABLE Emp
+ADD CONSTRAINT Emp_Fkey_const
+FOREIGN KEY Emp_Fkey(DeptCode)
+REFERENCES Dept(deptid);
+
+23.	create table emp(  
+  empno    int,  
+  ename    varchar(10),  
+  job      varchar(9),  
+  mgr      int,  
+  hiredate date,  
+  sal      float,    
+  deptno   int,  
+  constraint pk_emp primary key (empno),  
+  constraint fk_deptno foreign key (deptno) references dept (deptid)  
+);
+
+24.	ALTER TABLE Emp
+DROP FOREIGN KEY fk_deptno ;
+insert into DEPT (DEPTID, DNAME, LOC) values(10, 'ACCOUNTING', 'NEW YORK');
+
+25.	insert into dept values(20, 'RESEARCH', 'DALLAS');
+26.	insert into dept values(30, 'SALES', 'CHICAGO');
+27.	insert into dept values(40, 'OPERATIONS', 'BOSTON');
+
+28.	insert into emp
+values(
+ 7839, 'KING', 'PRESIDENT', null,
+ STR_TO_DATE('17-11-1981','%d-%m-%Y'),
+ 5000,10
+);
+
+
+29.	insert into emp  
+values(  
+ 7698, 'BLAKE', 'MANAGER', 7839,  
+ STR_TO_DATE('1-5-1981','%d-%m-%Y'),  
+ 2850,30  
+);
+
+30.	insert into emp  
+values(  
+ 7782, 'CLARK', 'MANAGER', 7839,  
+ STR_TO_DATE('9-6-1981','%d-%m-%Y'),  
+ 2450,10  
+);
+
+31.	insert into emp  
+values(  
+ 7566, 'JONES', 'MANAGER', 7839,  
+ STR_TO_DATE('2-4-1981','%d-%m-%Y'),  
+ 2975,20  
+);
+
+32.	insert into emp  
+values(  
+ 7788, 'SCOTT', 'ANALYST', 7566,  
+ STR_TO_DATE('13-JUL-87','%d-%b-%y'),  
+ 3000,20  
+);
+
+33.	insert into emp  
+values(  
+ 7902, 'FORD', 'ANALYST', 7566,  
+ STR_TO_DATE('3-12-1981','%d-%m-%Y'),  
+ 3000,20  
+);
+
+34.	insert into emp  
+values(  
+ 7369, 'SMITH', 'CLERK', 7902,  
+ STR_TO_DATE('17-12-1980','%d-%m-%Y'),  
+ 800,20  
+);
+
+35.	insert into emp  
+values(  
+ 7499, 'ALLEN', 'SALESMAN', 7698,  
+ STR_TO_DATE('20-2-1981','%d-%m-%Y'),  
+ 1600,30  
+);
+
+36.	insert into emp  
+values(  
+ 7521, 'WARD', 'SALESMAN', 7698,  
+ STR_TO_DATE('22-2-1981','%d-%m-%Y'),  
+ 1250,30  
+);
+
+
+37.	insert into emp  
+values(  
+ 7654, 'MARTIN', 'SALESMAN', 7698,  
+ STR_TO_DATE('28-9-1981','%d-%m-%Y'),  
+ 1250,30  
+);
+
+38.	insert into emp  
+values(  
+ 7844, 'TURNER', 'SALESMAN', 7698,  
+ STR_TO_DATE('8-9-1981','%d-%m-%Y'),  
+ 1500,30  
+);
+
+
+39.	insert into emp  
+values(  
+ 7876, 'ADAMS', 'CLERK', 7788,  
+ STR_TO_DATE('13-JUL-87', '%d-%b-%y'),  
+ 1100,20  
+);
+
+40.	insert into emp  
+values(  
+ 7900, 'JAMES', 'CLERK', 7698,  
+ STR_TO_DATE('3-12-1981','%d-%m-%Y'),  
+ 950,30  
+);
+
+41.	insert into emp  
+values(  
+ 7934, 'MILLER', 'CLERK', 7782,  
+ STR_TO_DATE('23-1-1982','%d-%m-%Y'),  
+ 1300,10  
+);
+
+42.	select count(*) from emp;
+
+43.	select empno, ename, job from emp;
+
+44.	select empno, ename, job from emp where mgr = 7839;
+45.	select ename, hiredate as "Date of Joining" from emp where deptno = 20;
+
+46.	select empno, ename from emp where ename = "SMITH";
+47.	select ename from emp where sal < 1500;
+
+48.	select ename from emp where sal < 1500 and deptno = 30;
+
+49.	select * from emp where sal=1500 or sal=1250;
+50.	select * from emp where sal in(1250,1500);
+
+51.	select * from emp where sal <=2500 AND sal >=1500;
+
+52.	select * from emp where sal BETWEEN 1500 AND 2500;
+
+53.	select ename from Emp where ename LIKE 'A%';
+
+54.	SELECT ename FROM Emp where BINARY ename = 'SmitH';
+55.	SELECT ename FROM Emp where BINARY ename = 'SMITH';
+
+56.	select ename from Emp where ename LIKE '__I%';
+
+57.	select ename from Emp where ename LIKE 'J%S';
+
+58.	select ename from Emp where mgr is null;
+
+59.	select ename, job, sal from Emp where ename like 'S%' or job like '%MAN%';
+
+60.	select ename,deptno from Emp where deptno = 10 or deptno = 20;
+
+61.	select ename,deptno from Emp where deptno in(10,20);
+
+#please give me names, job and salaries of employees working in Sales dept who are recruited before 3rd Dec 1981
+62.	SELECT ename,job,sal FROM emp WHERE deptno = 30 AND hiredate < DATE('1981-12-03');
+
+63.	select ename,job,sal,hiredate from Emp where hiredate <'1981-12-03'  ;
+
+64.	select distinct job from emp;
+
+65.	select * from emp order by sal;
+
+66.	select * from emp order by sal desc;
+
+67.	select * from emp order by sal desc, ename asc;
+
+68.	select * from emp order by sal desc, ename desc;
+
+69.	select ename,deptno from Emp where deptno not in(30,40);
+
+70.	select CONCAT('Hello ', ename)  FROM emp;
+
+71.	SELECT CONCAT('Today is ', sysdate()) FROM dual;
+
+72.	SELECT SUM(Sal) AS TOTALSAL From Emp;
+73.	SELECT AVG(Sal) AS AVGSAL From Emp;
+
+74.	SELECT AVG(Sal) AS AVGSAL From Emp where ename like 'M%';
+
+75.	SELECT MIN(Sal) From Emp;
+
+76.	SELECT MAX(Sal) From Emp;
+
+77.	SELECT count(*) From Emp;
+
+78.	select count(distinct sal) from emp;
+
+79.	select sal,count(*) from emp group by sal;
+80.	select job,count(*) from emp group by job;
+
+81.	select job,count(*) from emp group by job order by count(*) asc ;
+
+82.	select job,count(*) as counts from emp group by job order by counts asc;
+
+83.	select sal,ename from emp group by sal;
+84.	select sal,ename from emp group by sal,ename;
+
+85.	select sal,ename from emp group by sal;
+
+86.	SET sql_mode='ONLY_FULL_GROUP_BY';
+87.	SET sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''));
+88.	select sal,ename,count(*) from emp group by sal,ename;
+89.	select sal,ename,count(*) from emp group by sal,ename having sal>1500;
+90.	select sal,ename,count(*) from emp where sal>1500 group by sal,ename ;
+91.	select sal,ename,count(*) from emp group by sal,ename having sal>1500 order by ename asc;
+
+#convert below to english 
+92.	SELECT empno, Sal, ename, Count(*) FROM Emp where job
+LIKE '%MAN%' GROUP BY Sal, ename, empno
+Having MAX(empno) < 7777 ORDER BY Max(empno) DESC;
+
+93.	select sal,count(*) from emp group by sal having count(*)>1;
+94.	select job,mgr,count(*) from emp group by job,mgr order by count(*) desc;
+
+95.	select ABS(-15) "absolute" from dual;
+96.	select power(4,3) "raisedto" from dual;
+
+97.	select ROUND(17.175,1) "roundedno" from dual;
+98.	select ROUND(17.175,2) "roundedno" from dual;
+
+99.	select CEIL(17.175) "ceilno" from dual;
+100.	select FLOOR(17.175) "floorno" from dual;
+101.	select SQRT(81) "sqroot" from dual;
+
+102.	select SIGN(-100) "sign" from dual;
+103.	select SIGN(100) "sign" from dual;
+104.	select SIGN(0) "sign" from dual;
+105.	select MOD(5,2) "remainder" from dual;
+
+106.	select LOWER(ename) from emp;
+107.	select UPPER(ename) from emp;
+
+108.	select ename,LENGTH(ename) as namelength from emp;
+
+109.	select REPLACE(job,"PRESIDENT","SUPERBOSS") from Emp;
+
+110.	select LPAD(ename,5,"-") from emp;
+
+111.	select RPAD(ename,10,"-") from emp;
+112.	select SUBSTR("HelloWorld",1,5) from Dual;
+
+113.	SELECT Job, 
+CASE 
+ WHEN job='Clerk' THEN 'Junior'
+ WHEN job='PRESIDENT' THEN 'Superboss' 
+ WHEN job='manager' THEN 'boss' 
+END 
+AS hiararchy 
+from Emp;
+
+
+114.	select DATE_ADD('2024-02-02', INTERVAL 31 DAY);
+115.	select ADDDATE('2024-02-02', 31);
+
+116.	select CURDATE();
+117.	select CURTIME();
+
+118.	select DATE_SUB('2024-02-02', INTERVAL 1 YEAR);
+
+119.	select DATE('2021-01-05 22:20:02');
+120.	select PERIOD_ADD(202101,06);
+
+121.	select PERIOD_DIFF(202107,202101);
+
+122.	select DATE_FORMAT('2021-01-05 22:35:02','%W %M %Y');
+
+123.	select DATE_FORMAT('2021-01-05 22:35:02','%W %M %Y');
+124.	select STR_TO_DATE('1-5-1981','%d-%m-%Y');
+
+125.	select STR_TO_DATE('1-May-1981','%d-%M-%Y');
+126.	select STR_TO_DATE('1-May-81','%d-%M-%y');
+127.	select STR_TO_DATE('1st-May-81','%D-%M-%y');
+
+128.	select EXTRACT(YEAR FROM '2021-01-05');
+129.	select EXTRACT(YEAR_MONTH FROM '2021-01-05');
+130.	select ename,job,hiredate,deptno from emp;
+
+131.	select ename,job,hiredate,dept.loc from Emp join dept;
+
+132.	select ename,job,hiredate,deptno,dept.loc from emp join dept where emp.deptno=dept.deptid;
+
+133.	select ename, dname, job, hiredate, loc  
+from emp, dept  
+where emp.deptno = dept.deptid  
+order by ename;
+
+134.	select ename, dname, job, hiredate, loc  
+from emp, dept  
+where emp.deptno = dept.deptid  
+order by ename LIMIT 0, 10;
+
+135.	SELECT Emp.empno, Emp.ename, Emp.deptno, Dept.dname FROM Emp 
+CROSS JOIN Dept;
+
+136.	SELECT Emp.empno, Emp.ename, Emp.deptno, Dept.dname 
+FROM Emp, Dept;
+
+137.	SELECT Emp.empno, Emp.ename, Dept.dname From Emp 
+INNER JOIN Dept ON Emp.deptno = Dept.deptid;
+
+138.	SELECT Emp.empno, Emp.ename, Dept.dname From Emp, 
+Dept where Emp.deptno = Dept.deptid;
+139.	SELECT Emp.ename, Emp.sal, Dept.dname From Emp 
+JOIN Dept ON Emp.deptno = Dept.deptid
+where emp.sal between 1500 and 2500;
+
+140.	select e.ename, e.sal, d.dname 
+from emp e, dept d 
+where e.deptno = d.deptno and e.sal BETWEEN 1500 and 2500;
+141.	insert into emp  
+values(  
+ 7777, 'MAX', 'MULLAR', 7782,  
+ str_to_date('23-1-1982','%d-%m-%Y'),  
+ 1300,null  
+);
+142.	SELECT Emp.empno, Emp.ename, Dept.dname From Emp 
+LEFT OUTER JOIN Dept ON Emp.deptno = Dept.deptid;
+143.	SELECT Emp.empno, Emp.ename, Dept.dname From Emp 
+RIGHT OUTER JOIN Dept ON Emp.deptno = Dept.deptid;
+
+144.	SELECT Emp.empno, Emp.ename, Dept.dname From Emp 
+LEFT OUTER JOIN Dept ON Emp.deptno = Dept.deptid
+UNION
+SELECT Emp.empno, Emp.ename, Dept.dname From Emp 
+RIGHT OUTER JOIN Dept ON Emp.deptno = Dept.deptid;
+145.	SELECT e.ename, f.ename From Emp e,Emp f
+where e.mgr = f.empno;
+
+146.	select e1.ename, e2.ename as "manager name"
+from emp e1
+inner join emp e2
+on e1.mgr = e2.empno;
+147.	select deptid from dept where dname = 'SALES';
+
+148.	select empno, ename from emp where deptno = 30;
+
+149.	select empno, ename from emp where deptno = (select deptid from dept where dname = 'SALES');
+
+150.	select empno, ename from emp where deptno in (select deptid from dept where dname = 'SALES' or dname='Accounting');
+
+151.	select empno,ename,min(sal) from emp;
+152.	select empno,ename from emp where sal = (select min(sal) from emp);
+
+153.	SELECT empno,ename
+FROM emp
+ORDER BY sal
+LIMIT 1;
+
+154.	select avg(sal), deptno from emp e2 group by deptno;
+155.	select empno, ename, sal from emp e1 where sal > any (select avg(sal) from emp e2 group by deptno);
+
+156.	select empno, ename from emp e1 where sal < (select avg(sal) from emp e2 group by deptno having e2.deptno = e1.deptno);
+157.	select empno, ename from emp e1 where sal < (select avg(sal) from emp e2 where e2.deptno = e1.deptno);
+
+158.	select ename, dname, job, empno, hiredate, loc
+from emp, dept  
+where emp.deptno = dept.deptid  
+order by ename;
+
+159.	create table dept2(  
+  deptno     float(2,0),  
+  dname      varchar(14),  
+  loc        varchar(13),  
+  constraint pk_dept primary key (deptno)  
+);
+
+describe dept2;
+
+160.	insert into DEPT2 (DEPTNO, DNAME, LOC) values(10, 'ACCOUNTING', 'NEW YORK');
+select * from dept2;
+161.	CREATE TABLE dept10 AS
+SELECT deptno, dname
+FROM dept2 WHERE deptno = 10;
+
+select * from dept10;
+
+162.	ALTER TABLE dept10 RENAME TO deptten;
+
+
+163.	alter table deptten add column loc varchar(13);
+
+164.	update deptten set dname = 'IT' where deptno = 10;
+
+165.	DELETE FROM deptten;
+
+166.	DELETE FROM deptten where deptno = 10;
+
+167.	drop table deptten;
+
+168.	UPDATE dept
+SET dname = 'Information Technology'
+WHERE deptid=10;
+
+169.	UPDATE dept
+SET dname = 'IT'
+WHERE deptid=10;
+
+170.	update emp e1
+set sal = (select sal from (select sal from emp where empno = 7876 ) as e)
+where ename = 'smith';
+
+171.	UPDATE emp
+SET sal= (SELECT sal FROM (SELECT * FROM emp) AS tempemp WHERE tempemp.empno=7876 )
+WHERE ename= 'Smith';
+
+172.	update emp
+set sal = (select sal from (select sal from emp where ename='allen' and job = 'salesman') as tempe)
+where ename = 'martin';
+
+173.	update emp
+SET sal=(SELECT sal from (SELECT * FROM emp) AS eemp where eemp.ename='ALLEN')
+where ename='MARTIN';
+
+174.	create index ind_name on empmgmt.emp (ename);
+175.	create index ind_dname on empmgmt.dept (dname);
+
+176.	create procedure myproc1()
+select ename,job,sal from emp
+where empno=7777; 
+call myproc1();
+
+177.	create procedure getClerks()
+select empno,ename,job,sal from emp
+where job='clerk'; 
+call getClerks();
+
+178.	create procedure getEmpBySalary(in num int) 
+select * from emp where sal=num 
+order by ename;
+
+call getEmpBySalary(1100);
+
+179.	create procedure myproc2(in nm varchar(7)) 
+select * from emp where ename=nm 
+order by ename, sal;
+call myproc2('Adams');
+
+180.	create procedure GetRichEmpCount(in salary int, out total int)
+select count(*) into total from emp where sal > salary;
+
+call GetRichEmpCount(2000, @total);
+
+select @total;
+
+181.	drop procedure GetRichCount;
+
+182.	CREATE PROCEDURE SetCounter(INOUT counter INT,IN inc INT)
+SET counter = counter + inc;
+SET @counter = 1;
+CALL SetCounter(@counter,1);
+CALL SetCounter(@counter,5);
+select @counter;
+
+select @counter;
+183.	select ename,if(sal > 2000, 'Rich','Poor') from emp;
+
+184.	select empno, ifnull(mgr,'not having any manager') as manager from emp;
+
+185.	SELECT Ename, Sal, CASE
+    when SAL > 500 AND SAL < 1000 THEN 'OK'
+    when SAL > 1000 AND SAL < 1500 THEN 'GOOD'
+    when SAL > 1500 AND SAL < 2000 THEN 'VERY GOOD'
+    ELSE 'EXCELLENT'
+    END  as rating from Emp;
+
+186.	select COALESCE(NULL,2);
+
+187.	select empno, coalesce(mgr,ename) as poc from emp;
+
+188.	create table student(
+	stud_id int,
+    m1 int,
+    m2 int,
+    m3 int
+);
+
+189.	insert into student values(10, 50,60,40);
+190.	insert into student values(20,30,46,67);
+191.	insert into student values(30, 52,63,44);
+192.	insert into student values(33, 59,89,38);
+
+193.	select stud_id, LEAST(m1,m2,m3) as low_mark, greatest(m1,m2,m3) as high_mark
+from student;
+
+194.	select * from emp where sal BETWEEN 1500 AND 2500;
+
+195.	select * from emp where MGR IS NULL;
+196.	select * from emp where sal IN (1250,1500);
+
+197.	select ename from Emp where ename LIKE 'J%S';
+
+198.	select * from emp where sal NOT IN (1250,1500);
+
+199.	delimiter //
+create function noofemployees()
+returns int
+DETERMINISTIC
+begin
+declare c int;
+select count(*) into c from emp;
+return c;
+end; //
+DELIMITER ;
+
+200.	select noofemployees()
+
+201.	delimiter //
+create function calculateSalary(inc int,sal int)
+returns int
+deterministic
+begin
+declare c int;
+select ((inc*sal/100)+sal) into c ;
+return c;
+end; //
+DELIMITER ;
+
+202.	select calculateSalary(20,8000);
+
+203.	DELIMITER //
+CREATE FUNCTION calculatesalary(salary INT,bonusinpercent INT) 
+RETURNS INT
+DETERMINISTIC
+BEGIN
+DECLARE newsalary INT;
+SET newsalary = salary + salary * bonusinpercent/100;
+RETURN newsalary;
+END; //
+DELIMITER ;
+
+204.	select calculatesalary(8000,20);
+205.	DELIMITER //
+create trigger dept_trig1 
+before insert on dept for each row
+begin
+set new.dname = REPLACE(new.dname,'h','H');
+end; //
+DELIMITER ;
+
+206.	insert into dept values(50,'hr','Mumbai');
+207.	select * from dept;
+
+
+208.	DELIMITER //
+create trigger dept_trig1 
+before insert on dept for each row
+begin
+set new.dname = REPLACE(new.dname,'hr','Human resource');
+end; //
+DELIMITER ;
+
+209.	insert into dept values(60,'hr','Mumbai');
+210.	create table dept_log (
+deptid integer,
+creation_time date
+);
+211.	DELIMITER //
+create trigger dept_trig2
+after insert on dept for each row
+begin
+insert into dept_log values(NEW.deptid,Now());
+end; //
+DELIMITER ;
+
+212.	insert into dept values(70,"tech","Bengaluru");
+
+213.	describe dept_log;
+214.	select * from dept_log;
+
+215.	CREATE VIEW EmpWithManager AS
+SELECT e.ename, m.ename AS "ManagerName" FROM Emp e 
+INNER JOIN Emp m ON e.mgr = m.empno;
+
+216.	select * from empwithmanager;
+
+217.	CREATE VIEW managerview AS
+SELECT e.ename, m.ename AS "ManagerName" FROM Emp e 
+left outer JOIN Emp m ON e.mgr = m.empno;
+218.	select * from managerview;
+219.	select ename from managerview;
+
+220.	WITH tempemp as (SELECT * FROM emp where sal > 1600)
+   select ename, sal from tempemp;

@@ -1,0 +1,8 @@
+<h2>Product Details</h2>
+<table border="3" *ngFor="let p of products" (click)="onselectname(p)">
+  <tr>
+    <td>{{ p.id }}</td>
+    <td>{{ p.name }}</td>
+    <td>{{ p.price }}</td>
+  </tr>
+</table>
